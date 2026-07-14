@@ -1,0 +1,56 @@
+# NA-598 — quality gates CONSULTIVOS. Rodam em PR, NUNCA bloqueiam (continue-on-error).
+# Repo é uma lib npm sem deploy próprio (sem serverless.yml/Dockerfile) — nada quebra.
+name: Quality Gates (consultivo)
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  secret-scan:
+    name: Secret Scan (gitleaks)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # gitleaks direto (redact mascara valores); consultivo: não falha o job.
+      - name: gitleaks
+        continue-on-error: true
+        run: |
+          docker run --rm -v "$PWD:/repo" zricethezav/gitleaks:v8.30.1 \
+            detect --source /repo --redact --no-banner --exit-code 0 --report-path /repo/gitleaks-report.json || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gitleaks-report
+          path: gitleaks-report.json
+          if-no-files-found: ignore
+
+  sast:
+    name: SAST (Semgrep OSS)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    container:
+      image: semgrep/semgrep:1.169.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: semgrep
+        continue-on-error: true
+        run: semgrep scan --config p/javascript --config p/security-audit --metrics=off . || true
+
+  deps:
+    name: Dependency Scan (Trivy)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: trivy
+        continue-on-error: true
+        run: |
+          docker run --rm -v "$PWD:/repo" aquasec/trivy:0.72.0 \
+            fs --scanners vuln --severity HIGH,CRITICAL --exit-code 0 /repo || true
