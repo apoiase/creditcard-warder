@@ -1,3 +1,18 @@
 node_modules
 *.log
 
+# Config local da sessão (modelo Fable) — não versionar
+.claude/settings.local.json
+
+# relatório do gitleaks (gerado no CI)
+gitleaks-report.json
+
+# understand-anything: manter knowledge-graph.json; ignorar scratch
+.understand-anything/intermediate/
+.understand-anything/tmp/
+.understand-anything/.trash-*/
+.understand-anything/.understandignore
+
+# graphify: manter graph.json/GRAPH_REPORT.md/triage-info.json; ignorar caches AST
+graphify-out/.graphify_*
+graphify-out/cache/
