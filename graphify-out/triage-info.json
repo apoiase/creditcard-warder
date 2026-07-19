@@ -1,0 +1,46 @@
+{
+  "repo": "creditcard-warder",
+  "last_commit": "2019-10-23 18:32:39 -0300",
+  "last_author": "Paula Pinheiro",
+  "commits": "37",
+  "code_files": 5,
+  "doc_files": 1,
+  "has_serverless": false,
+  "has_pipeline": false,
+  "has_dockerfile": false,
+  "pkg_name": "creditcard-warder",
+  "deps": [
+    "lodash.find",
+    "luhn"
+  ],
+  "graph_nodes": 50,
+  "graph_edges": 44,
+  "communities": 12,
+  "god_nodes": [
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 5
+    },
+    {
+      "id": "package_testling",
+      "label": "testling",
+      "degree": 4
+    },
+    {
+      "id": "package_xo",
+      "label": "xo",
+      "degree": 4
+    },
+    {
+      "id": "package_repository",
+      "label": "repository",
+      "degree": 3
+    },
+    {
+      "id": "bower_main",
+      "label": "main",
+      "degree": 1
+    }
+  ]
+}

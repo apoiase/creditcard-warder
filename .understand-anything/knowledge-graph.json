@@ -1,0 +1,187 @@
+{
+    "version": "1.0.0",
+    "project": {
+        "name": "creditcard-warder",
+        "languages": ["javascript"],
+        "frameworks": [],
+        "description": "Standalone JS library (published to npm as `creditcard-warder`) that identifies a Brazilian/global credit card brand from a card number (BIN/regex table) and validates the number via Luhn checksum. No server, no database, no AWS resources of its own — a pure client+server side validation library consumed as a dependency by the monolito (apoia.se, both Node backend and browser bundle) and by apoiase-client (React forms).",
+        "analyzedAt": "2026-07-14T15:20:00-03:00",
+        "gitCommitHash": "daef10254f3d8e7223a004556e0b6a001f1f9b02"
+    },
+    "nodes": [
+        {
+            "id": "file:index.js",
+            "type": "file",
+            "name": "index.js",
+            "filePath": "index.js",
+            "summary": "Entry point. Defines the CredircardWarder constructor with a hardcoded `rules` table (regex pattern + valid lengths + cvcLength per brand: elo, hipercard, aura, visaelectron, maestro, forbrugsforeningen, dankort, visa, mastercard, amex, dinersclub, discover, unionpay, jcb, other) and exposes getBrand()/validate() via a factory function.",
+            "tags": ["core", "public-api"],
+            "complexity": "simple"
+        },
+        {
+            "id": "function:index.js:CredircardWarder",
+            "type": "function",
+            "name": "CredircardWarder (constructor)",
+            "filePath": "index.js",
+            "summary": "Constructor that stores the input number and the static `rules` array (14 brand patterns + fallback 'other'). Note the typo in the internal name (Credircard, missing 'e') — harmless, not part of the public surface.",
+            "tags": ["core"],
+            "complexity": "simple"
+        },
+        {
+            "id": "function:index.js:getRule",
+            "type": "function",
+            "name": "getRule",
+            "filePath": "index.js",
+            "summary": "Uses lodash.find to return the first rule whose regex matches the stored number, falling back to the 'other' rule when nothing matches.",
+            "tags": ["helper"],
+            "complexity": "simple"
+        },
+        {
+            "id": "function:index.js:getBrand",
+            "type": "function",
+            "name": "getBrand",
+            "filePath": "index.js",
+            "summary": "Public method. Returns the `type` string of the matched rule (e.g. 'visa', 'mastercard', 'other').",
+            "tags": ["public-api"],
+            "complexity": "simple"
+        },
+        {
+            "id": "function:index.js:validate",
+            "type": "function",
+            "name": "validate",
+            "filePath": "index.js",
+            "summary": "Public method. Delegates to the `luhn` package (luhn.validate) to check the Luhn checksum of the stored number — does not itself implement Luhn.",
+            "tags": ["public-api"],
+            "complexity": "simple"
+        },
+        {
+            "id": "file:test/test.js",
+            "type": "file",
+            "name": "test.js",
+            "filePath": "test/test.js",
+            "summary": "Mocha/assert unit tests covering getBrand() across all 14 supported brands plus invalid input, using well-known public test/example card numbers (not real PANs — same fixtures used across the payments-testing ecosystem).",
+            "tags": ["test"],
+            "complexity": "simple"
+        },
+        {
+            "id": "config:package.json",
+            "type": "config",
+            "name": "package.json",
+            "filePath": "package.json",
+            "summary": "npm manifest, published as `creditcard-warder` v1.0.1. Runtime deps: lodash.find, luhn. Dev: mocha, rollup (+ plugins), xo (linter), testling. `xo` config disables esnext (ES5 style).",
+            "tags": ["config", "manifest"],
+            "complexity": "simple"
+        },
+        {
+            "id": "config:bower.json",
+            "type": "config",
+            "name": "bower.json",
+            "filePath": "bower.json",
+            "summary": "Bower manifest (legacy frontend package manager) exposing the same lib for browser consumption — mirrors how apoia.se's monolito includes it (public/lib/creditcard-warder/dist/creditcard-warder.min.js).",
+            "tags": ["config", "manifest", "legacy"],
+            "complexity": "simple"
+        },
+        {
+            "id": "config:rollup.config.js",
+            "type": "config",
+            "name": "rollup.config.js",
+            "filePath": "rollup.config.js",
+            "summary": "Rollup build config bundling index.js into a UMD bundle (dist/creditcard-warder.min.js, global name CreditcardWarder) via node-resolve + commonjs + uglify.",
+            "tags": ["config", "build"],
+            "complexity": "simple"
+        },
+        {
+            "id": "file:dist/creditcard-warder.min.js",
+            "type": "file",
+            "name": "creditcard-warder.min.js",
+            "filePath": "dist/creditcard-warder.min.js",
+            "summary": "Committed prebuilt UMD bundle — this is the exact artifact the monolito's browser bundle (include-scripts.js) references from public/lib/.",
+            "tags": ["build-artifact"],
+            "complexity": "simple"
+        },
+        {
+            "id": "document:README.md",
+            "type": "document",
+            "name": "README.md",
+            "filePath": "README.md",
+            "summary": "Accurately documents this repo (unlike installment-calculator's README, which wrongly documents creditcard-warder instead — a known cross-repo doc-drift pair). Lists supported brands and Node + browser usage.",
+            "tags": ["docs"],
+            "complexity": "simple"
+        }
+    ],
+    "edges": [
+        { "source": "file:index.js", "target": "function:index.js:CredircardWarder", "type": "contains", "weight": 1.0 },
+        { "source": "file:index.js", "target": "function:index.js:getRule", "type": "contains", "weight": 1.0 },
+        { "source": "file:index.js", "target": "function:index.js:getBrand", "type": "contains", "weight": 1.0 },
+        { "source": "file:index.js", "target": "function:index.js:validate", "type": "contains", "weight": 1.0 },
+        { "source": "function:index.js:getBrand", "target": "function:index.js:getRule", "type": "calls", "weight": 0.8 },
+        { "source": "function:index.js:validate", "target": "function:index.js:getBrand", "type": "related_to", "weight": 0.3 },
+        { "source": "file:test/test.js", "target": "file:index.js", "type": "imports", "weight": 0.7 },
+        { "source": "file:index.js", "target": "file:test/test.js", "type": "tested_by", "weight": 0.5 },
+        { "source": "config:package.json", "target": "file:index.js", "type": "configures", "weight": 0.6 },
+        { "source": "config:rollup.config.js", "target": "file:index.js", "type": "configures", "weight": 0.6 },
+        { "source": "config:rollup.config.js", "target": "file:dist/creditcard-warder.min.js", "type": "produces", "weight": 0.7 },
+        { "source": "config:bower.json", "target": "file:dist/creditcard-warder.min.js", "type": "depends_on", "weight": 0.6 },
+        { "source": "document:README.md", "target": "file:index.js", "type": "documents", "weight": 0.5 }
+    ],
+    "layers": [
+        {
+            "id": "layer:core-logic",
+            "name": "Core Logic",
+            "description": "Brand detection (regex table) and Luhn validation — index.js and its functions.",
+            "nodeIds": [
+                "file:index.js",
+                "function:index.js:CredircardWarder",
+                "function:index.js:getRule",
+                "function:index.js:getBrand",
+                "function:index.js:validate"
+            ]
+        },
+        {
+            "id": "layer:build-and-package",
+            "name": "Build & Package",
+            "description": "npm/bower manifests, rollup config and the committed browser bundle used to ship this as a dual Node+browser library.",
+            "nodeIds": [
+                "config:package.json",
+                "config:bower.json",
+                "config:rollup.config.js",
+                "file:dist/creditcard-warder.min.js"
+            ]
+        },
+        {
+            "id": "layer:tests-and-docs",
+            "name": "Tests & Docs",
+            "description": "Unit tests (public test card fixtures) and accurate README.",
+            "nodeIds": [
+                "file:test/test.js",
+                "document:README.md"
+            ]
+        }
+    ],
+    "tour": [
+        {
+            "order": 1,
+            "title": "What this package does",
+            "description": "index.js's `rules` array is the whole product: 14 brand regex patterns (Elo, Hipercard, Aura, Visa Electron, Maestro, Forbrugsforeningen, Dankort, Visa, Mastercard, Amex, Dinersclub, Discover, Unionpay, JCB) plus an 'other' fallback. getBrand() returns the matched type; validate() checks the Luhn checksum via the `luhn` package.",
+            "nodeIds": ["file:index.js", "function:index.js:getBrand", "function:index.js:validate"]
+        },
+        {
+            "order": 2,
+            "title": "How brand matching works",
+            "description": "getRule() uses lodash.find to test the number against each regex in order, first match wins; falls back to 'other' if nothing matches (or the input is empty/non-numeric).",
+            "nodeIds": ["function:index.js:getRule", "function:index.js:CredircardWarder"]
+        },
+        {
+            "order": 3,
+            "title": "Tests use public test PANs",
+            "description": "test/test.js exercises every brand with well-known public test/example card numbers (industry-standard test BINs, not real cardholder data) — relevant for PCI-scope review of this repo: no real PAN present, only synthetic test values matching the same fixtures used across the payments-testing ecosystem.",
+            "nodeIds": ["file:test/test.js"]
+        },
+        {
+            "order": 4,
+            "title": "Shipped two ways: Node module and browser bundle",
+            "description": "package.json publishes it to npm (used server-side by apoia.se's mundipagg/subscription.js and directly by apoiase-client's card-number/card-cvv form fields); bower.json + rollup.config.js additionally produce dist/creditcard-warder.min.js, the exact file apoia.se's include-scripts.js loads client-side (public/lib/creditcard-warder/dist/...). No AWS resource, no serverless.yml, no deploy of its own — it is pure library code consumed by other repos.",
+            "nodeIds": ["config:package.json", "config:bower.json", "config:rollup.config.js", "file:dist/creditcard-warder.min.js", "document:README.md"]
+        }
+    ]
+}

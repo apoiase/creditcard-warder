@@ -1,0 +1,32 @@
+{
+  "bower.json": {
+    "mtime": 1783875364.0,
+    "ast_hash": "d6dab5f8b50d32f24af2ae0235061b68",
+    "semantic_hash": "d6dab5f8b50d32f24af2ae0235061b68"
+  },
+  "index.js": {
+    "mtime": 1783875364.0,
+    "ast_hash": "1c635b040cd10bb830fe3c042eafdaea",
+    "semantic_hash": "1c635b040cd10bb830fe3c042eafdaea"
+  },
+  "package.json": {
+    "mtime": 1783875364.0,
+    "ast_hash": "0d67996602ba8ecca74d201fc73d4860",
+    "semantic_hash": "0d67996602ba8ecca74d201fc73d4860"
+  },
+  "rollup.config.js": {
+    "mtime": 1783875364.0,
+    "ast_hash": "9494df0ee78da0abc4cb66154430b92b",
+    "semantic_hash": "9494df0ee78da0abc4cb66154430b92b"
+  },
+  "test/test.js": {
+    "mtime": 1783875364.0,
+    "ast_hash": "ca6da46bc1576ff8dcccb359ff25cd34",
+    "semantic_hash": "ca6da46bc1576ff8dcccb359ff25cd34"
+  },
+  "README.md": {
+    "mtime": 1783875364.0,
+    "ast_hash": "ee5aa2fcec13098e39d5ef9075092b3f",
+    "semantic_hash": "ee5aa2fcec13098e39d5ef9075092b3f"
+  }
+}

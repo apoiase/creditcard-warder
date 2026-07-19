@@ -1,0 +1,86 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "be3042af4d97a07a4d03efc8617a004c489c111e",
+  "generatedAt": "2026-07-18T21:53:00.468Z",
+  "files": {
+    "index.js": {
+      "filePath": "index.js",
+      "contentHash": "b3b2211cff704d7d758af49a2e9cd3d4af14e1d06a71063bbef2f3b831638e6c",
+      "functions": [
+        {
+          "name": "CredircardWarder",
+          "params": [
+            "number"
+          ],
+          "exported": false,
+          "lineCount": 83
+        }
+      ],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 109,
+      "hasStructuralAnalysis": true
+    },
+    "test/test.js": {
+      "filePath": "test/test.js",
+      "contentHash": "518ff64ecb967433455d16693846eb549b37d7cfb997ec914fbb6defdae746f0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 112,
+      "hasStructuralAnalysis": true
+    },
+    "package.json": {
+      "filePath": "package.json",
+      "contentHash": "2c3eeccde4ad81a3ac1e3add04b537a59c6c5a8e19c9a2f7af3be22b42a4e147",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 74,
+      "hasStructuralAnalysis": true
+    },
+    "bower.json": {
+      "filePath": "bower.json",
+      "contentHash": "c48b3f1f64fe57d10a23dc333c3a49fd2c65e29257a1fbd1cfbbf1a60f7eac74",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "rollup.config.js": {
+      "filePath": "rollup.config.js",
+      "contentHash": "72fc9863793ac814cef28157e41db7fa422db754cbc2cec98f32327ac3cea454",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 23,
+      "hasStructuralAnalysis": true
+    },
+    "dist/creditcard-warder.min.js": {
+      "filePath": "dist/creditcard-warder.min.js",
+      "contentHash": "f2c71ff83a22a94fed76a245310b3e7dbb2dc7becd0cd0eb4d658f3a94d7626f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": true
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "2c836fb5ecf19a1b68b8c66d04afcb5fa86ea84806fc3e19b9e4fd9ee8d6752d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 62,
+      "hasStructuralAnalysis": true
+    }
+  }
+}
