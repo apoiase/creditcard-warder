@@ -1,0 +1,6 @@
+# CodeGraph index. The database is committed on purpose (NA-704) so a fresh
+# clone can query the graph without running `codegraph init` first. Everything
+# else here is transient and machine-local: daemon.pid, sockets, logs, WAL.
+*
+!.gitignore
+!codegraph.db

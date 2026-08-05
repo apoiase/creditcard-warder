@@ -69,3 +69,25 @@ Cobrança", onde este repo aparece listado — ver nota de divergência acima e 
   para não confundir com secret real caso outro scanner acuse.
 - Devdeps desatualizadas (`xo@0.15.0` de 2016, `rollup@^0.66.2`, `mocha@^3.2.0`) — débito de
   higiene, sem urgência (repo estável, tabela de bandeiras não muda com frequência).
+
+
+<!-- codegraph:start -->
+## CodeGraph
+
+Este repositório tem índice CodeGraph versionado em `.codegraph/codegraph.db`.
+Use-o ANTES de `grep`/`find` ou de abrir arquivos quando precisar entender ou
+localizar código:
+
+- **MCP** (quando disponível): `codegraph_explore` responde a maior parte das
+  perguntas sobre código numa chamada só — devolve o fonte verbatim dos símbolos
+  relevantes e os call paths entre eles, incluindo os saltos de dispatch dinâmico
+  que o `grep` não acompanha. Cite um arquivo ou símbolo na query para ler o
+  fonte atual numerado por linha.
+- **Shell** (sempre funciona): `codegraph explore "<símbolos ou pergunta>"`.
+
+O índice acompanha o repositório, então um clone novo já consulta o grafo sem
+precisar rodar nada antes. Ele reflete o commit em que foi gerado: depois de
+mudar código, `codegraph sync .` atualiza o índice local e `codegraph index .`
+reconstrói do zero. Regerar o `.db` versionado é opcional — vale a pena junto de
+mudanças estruturais, não é pré-requisito para trabalhar aqui.
+<!-- codegraph:end -->
